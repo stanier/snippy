@@ -1,0 +1,13 @@
+{
+  "name": "screeps-irc-bot",
+  "author": "Keyton Stanier",
+  "main": "index.js",
+  "dependencies": {
+    "irc": "^0.3.12",
+    "request": "^2.61.0",
+    "twitter": "^1.2.5"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
