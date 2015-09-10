@@ -4,25 +4,7 @@ An IRC Bot for screeps
 # Installation
 Snippy is not meant to be replicated en masse as of yet.  It can be run using `npm start`, though you must supply environment variables for it to function properly
 
-The required variables are as listed below:
-```
-IRC_NETWORK
-IRC_NICK
-IRC_NAME
-IRC_PASSWORD
-IRC_ROOMS
-IRC_TRUSTED
-
-TWITTER_ENABLED (boolean)
-TWITTER_CONSUMER_KEY
-TWITTER_CONSUMER_SECRET
-ACCESS_TOKEN_KEY
-ACCESS_TOKEN_SECRET
-
-SCREEPS_ENABLED (boolean)
-SCREEPS_USERNAME
-SCREEPS_PASSWORD
-```
+Take a copy of the settings-default.js and name it to settings.js then fill in the needed variables. If a setting is left disabled then the settings under it don't need to be filled in.
 
 # Roadmap
 
