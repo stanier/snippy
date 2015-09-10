@@ -45,11 +45,6 @@ var lyrics = [
 
 var line = 0;
 
-var singers = [
-    'Alica',
-    'Alica1'
-];
-
 module.exports = {
     handle: 'cake',
     commands: [
@@ -66,7 +61,7 @@ module.exports = {
         }
     ],
     onMessage: function(from, to, text, message) {
-        if (text === lyrics[line] && singers.indexOf(from) > -1) {
+        if (text === lyrics[line]) {
             setTimeout(function() {
                 line++;
 
