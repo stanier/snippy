@@ -28,5 +28,5 @@ build/Release
 node_modules
 
 # Local configuration files
-settings.js
+config.js
 run.sh
