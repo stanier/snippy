@@ -1,9 +1,15 @@
 var fs = require('fs');
+
+var isThere = require('is-there');
+
 var Irc = require('irc');
-var settings = require('./settings.js');
+
+var configPath = isThere('./config.js') ? './config.js' : './config.default.js';
+
+global.Config = require(configPath);
 
 global.Bot = {
-	approved: settings.ircTrusted.split(/\s/gi),
+	approved: Config.irc.trusted.split(/\s/gi),
 	onStartup: [],
 	onConnected: [],
 	onJoin: [],
@@ -11,13 +17,13 @@ global.Bot = {
 	commands: {}
 };
 
-global.irc = new Irc.Client(settings.ircNetwork, settings.ircNick, {
-	userName: settings.ircName,
-	channels: settings.ircRooms.split(/\s/gi)
+global.irc = new Irc.Client(Config.irc.network, Config.irc.nick, {
+	userName: Config.irc.name,
+	channels: Config.irc.rooms.split(/\s/gi)
 });
 
 irc.addListener('registered', function(message) {
-	irc.send('/msg NickServ IDENTIFY ' + settings.ircPassword);
+	irc.send('/msg NickServ IDENTIFY ' + Config.irc.password);
 
 	for (var i = 0; i < Bot.onStartup.length; i++) {
 		Bot.onStartup[i]();

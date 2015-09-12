@@ -4,11 +4,11 @@
   "main": "index.js",
   "dependencies": {
     "irc": "^0.3.12",
+    "is-there": "^4.0.0",
     "request": "^2.61.0",
     "twitter": "^1.2.5"
   },
   "scripts": {
-    "postinstall": "test -f settings.js || cp settings-default.js settings.js",
     "start": "node index.js"
   }
 }

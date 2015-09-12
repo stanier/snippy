@@ -1,15 +1,14 @@
 var Twitter = require('twitter');
-var settings = require('../settings.js');
 
 module.exports = {
 	handle: 'twitter',
-	enabled: settings.twitterEnabled || true,
+	enabled: Config.twitter.enabled || true,
 	onStartup: function() {
 		global.twitter = new Twitter({
-			consumer_key       : settings.twitterConsumerKey,
-			consumer_secret    : settings.twitterConsumerSecret,
-			access_token_key   : settings.twitterAccessKey,
-			access_token_secret: settings.twitterAccessSecret
+			consumer_key       : Config.twitter.consumerKey,
+			consumer_secret    : Config.twitter.consumerSecret,
+			access_token_key   : Config.twitter.accessKey,
+			access_token_secret: Config.twitter.accessSecret
 		});
 
 		twitter.stream('statuses/filter', { follow: '2838070617' }, function(stream) {

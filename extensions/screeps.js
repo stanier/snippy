@@ -1,9 +1,8 @@
 var request = require('request');
-var settings = require('../settings.js');
 
 module.exports = {
 	handle: 'screeps',
-	enabled: settings.screepsEnabled,
+	enabled: Config.screeps.enabled,
 	commands: [
 		{
 			command: 'room',
@@ -21,15 +20,16 @@ module.exports = {
 						url: "https://screeps.com/api/game/map-stats",
 						json: true,
 						auth: {
-							user: settings.screepsEmail,
-							pass: settings.screepsPassword
+							user: Config.screeps.email,
+							pass: Config.screeps.password
 						},
 						body: {
 							rooms: rooms,
 							statName: 'owner0'
 						}
 					}, function (err, httpResponse, body) {
-						if (Object.keys(body.stats).length > 0) {
+						if (!!body.error) irc.say(to, 'Not authenticated to game');
+						else if (Object.keys(body.stats).length > 0) {
 							for (var name in body.stats) {
 								if (!!body.stats[name].own) {
 									var user = body.users[body.stats[name].own.user];
@@ -37,13 +37,9 @@ module.exports = {
 									irc.say(to, 'Room ' + name + ' is owned by ' + user.username +
 									' and is at level ' + body.stats[name].own.level +
 									'. | Link: https://screeps.com/a/#!/room/' + name);
-								} else {
-									irc.say(to, 'Room ' + name + ' is unowned | Link: https://screeps.com/a/#!/room/' + name);
-								}
+								} else irc.say(to, 'Room ' + name + ' is unowned | Link: https://screeps.com/a/#!/room/' + name);
 							}
-						} else {
-							irc.say(to, 'No rooms found');
-						}
+						} else irc.say(to, 'No rooms found');
 					});
 				} else {
 					irc.say(to, 'Please specify at least one valid room');
